@@ -189,7 +189,7 @@ if ($_POST['promotion']=='1' OR $_POST['promotion']=='2')
       $_POST['date_naissance_etudiant']=$donnee['date_naissance_etudiant'];
     }
 
-    if(!isset($_POST['promotion']))
+    if(!isset($_POST['promotion']) OR $_POST['promotion']="")
     {
       $_POST['promotion']=$donnee['promotion_etudiant'];
     }
