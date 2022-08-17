@@ -24,7 +24,8 @@ if (isset($_GET['test']) AND $_GET['test']=='Accueil')
     if ($_SESSION['id']== NULL)
     {
         /* ICI l'utilisateur n'est pas connecté */
-        include 'vues/test.php';
+        $_GET['connect'] =0;
+        include 'vues/index.php';
     }
     else 
     {
@@ -42,7 +43,7 @@ if (isset($_GET['test']) AND $_GET['test']=='Connexions')
     {
        /* Le login et mot de passe ne trouvent pas dans la base des donnees */
         $_GET['pages'] ='erreur'; // La variable $_GET['pages']  est utilisee sur la page de connection
-        include 'vues/connexion.php';
+        include 'vues/connexion/connexion.php';
     }
      else
     {
@@ -65,7 +66,7 @@ if (isset($_GET['test']) AND $_GET['test']=='Inscriptions')
         $nombre=comptes(); 
 
         $_GET['pages'] ='succees';
-        include 'vues/connexion.php';
+        include 'vues/connexion/connexion.php';
     }
 
     else
@@ -107,7 +108,7 @@ if (isset($_GET['test']) AND $_GET['test']=='Inscriptions')
 }
 if (isset($_GET['test']) AND $_GET['test']=='Seconnecter')
 {
-    include 'vues/connexion.php';
+    include 'vues/connexion/connexion.php';
 }
 
 // Je pourrai peut etre en avoir besoin: include(dirname(__FILE__).'/../vues/.....');

@@ -24,7 +24,7 @@ else
 { 
     $_SESSION['id']= NULL;
     $_GET['connect'] =0;
-    include 'vues/test.php';
+    include 'vues/index.php';
 }
 
  ?>
