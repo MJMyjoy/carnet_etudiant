@@ -88,14 +88,104 @@ if (isset($_GET['test']) AND $_GET['test']=='Inscriptions')
         include 'vues/connexion/connexion.php';
     }
  
+
+    if (isset($_GET['test']) AND $_GET['test']=='Rechercher')
+    {
+        if ($_SESSION['id']== NULL)
+        {
+            /* ICI l'utilisateur n'est pas connecté */
+            $_GET['connect'] =0;
+            include 'vues/index.php';
+        }
+        else 
+        {
+         $_GET['connect'] =1;
+            $moi= recuperer($_SESSION['id']);
+            if (isset($_POST['nom']))
+                {
+                $etudiants=rechercher('"'.$_POST['nom'].'"');
+                }
+            else
+            {
+            
+            $etudiants=NULL;}
+            }
+    include 'vues/recherche/index.php';
+
+}
+
+
     if (isset($_GET['test']) AND $_GET['test']=='Affichage')
     {
-        
+        if ($_SESSION['id']== NULL)
+        {
+            /* ICI l'utilisateur n'est pas connecté */
+            $_GET['connect'] =0;
+            include 'vues/index.php';
+        }
+        else 
+        {
     $_GET['connect'] =1;
     $moi= recuperer($_SESSION['id']);
     $etudiants=afficher();
     include 'vues/afficher/index.php';
+        }
 }
+
+if (isset($_GET['test']) AND $_GET['test']=='Affichage_date')
+{
+    if ($_SESSION['id']== NULL)
+    {
+        /* ICI l'utilisateur n'est pas connecté */
+        $_GET['connect'] =0;
+        include 'vues/index.php';
+    }
+    else 
+    {
+$_GET['connect'] =1;
+$moi= recuperer($_SESSION['id']);
+$etudiants=grouper_date();
+include 'vues/afficher/index.php';
+    }
+}
+
+
+
+if (isset($_GET['test']) AND $_GET['test']=='Affichage_prom')
+{
+    if ($_SESSION['id']== NULL)
+    {
+        /* ICI l'utilisateur n'est pas connecté */
+        $_GET['connect'] =0;
+        include 'vues/index.php';
+    }
+    else 
+    {
+$_GET['connect'] =1;
+$moi= recuperer($_SESSION['id']);
+$etudiants=grouper_promotion();
+include 'vues/afficher/index.php';
+    }
+}
+
+
+if (isset($_GET['test']) AND $_GET['test']=='Affichage_fil')
+{
+    if ($_SESSION['id']== NULL)
+    {
+        /* ICI l'utilisateur n'est pas connecté */
+        $_GET['connect'] =0;
+        include 'vues/index.php';
+    }
+    else 
+    {
+$_GET['connect'] =1;
+$moi= recuperer($_SESSION['id']);
+$etudiants=grouper_filiere();
+include 'vues/afficher/index.php';
+    }
+}
+
 
 if (isset($_GET['test']) AND $_GET['test']=='Seconnecter')
 {
@@ -107,5 +197,21 @@ if (isset($_GET['test']) AND $_GET['test']=='Sinscrire')
     include 'vues/inscription/inscription.php';
 }
 
+if (isset($_GET['test']) AND $_GET['test']=='Profils')
+{
+    if ($_SESSION['id']== NULL)
+    {
+        /* ICI l'utilisateur n'est pas connecté */
+        $_GET['connect'] =0;
+        include 'vues/index.php';
+    }
+    else 
+    {
+    /* Ici c'est au cas ou un utilisateur deja connect desir revenir sur sa page d'accueil */
+    $_GET['connect'] =1;
+    $moi= recuperer($_SESSION['id']);
+    include 'vues/users/index.php';
+    }
+}
 // Je pourrai peut etre en avoir besoin: include(dirname(__FILE__).'/../vues/.....');
 ?>
