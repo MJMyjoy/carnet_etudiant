@@ -32,7 +32,7 @@ if (isset($_GET['test']) AND $_GET['test']=='Accueil')
     /* Ici c'est au cas ou un utilisateur deja connect desir revenir sur sa page d'accueil */
     $_GET['connect'] =1;
     $moi= recuperer($_SESSION['id']);
-    include 'vues/test.php';
+    include 'vues/index.php';
     }
 }
 
@@ -51,7 +51,7 @@ if (isset($_GET['test']) AND $_GET['test']=='Connexions')
     $_SESSION['id'] = $id;
     $_GET['connect'] =1; // La variable $_GET['connect']  est utilisee sur la page d'accueil d'un utilisateur connecté ou non
     $moi= recuperer($_SESSION['id']);
-    include 'vues/test.php';
+    include 'vues/index.php';
     
     }
 }
@@ -85,30 +85,26 @@ if (isset($_GET['test']) AND $_GET['test']=='Inscriptions')
         $_SESSION['id']=NULL;
         $_GET['connect'] =0;
         $_GET['pages'] ='supp';
-        include 'vues/connexion.php';
+        include 'vues/connexion/connexion.php';
     }
  
     if (isset($_GET['test']) AND $_GET['test']=='Affichage')
     {
         
-    if ($_SESSION['id']== NULL)
-    {
-        /* ICI l'utilisateur n'est pas connecté */
-        $etudiants=afficher();
-        include 'vues/testaff.php';
-    }
-    else
-    {
-         /* Ici c'est au cas ou un utilisateur deja connect desir revenir sur sa page d'accueil */
     $_GET['connect'] =1;
     $moi= recuperer($_SESSION['id']);
     $etudiants=afficher();
-    include 'vues/testaff.php';
-    }
+    include 'vues/afficher/index.php';
 }
+
 if (isset($_GET['test']) AND $_GET['test']=='Seconnecter')
 {
     include 'vues/connexion/connexion.php';
+}
+
+if (isset($_GET['test']) AND $_GET['test']=='Sinscrire')
+{
+    include 'vues/inscription/inscription.php';
 }
 
 // Je pourrai peut etre en avoir besoin: include(dirname(__FILE__).'/../vues/.....');
